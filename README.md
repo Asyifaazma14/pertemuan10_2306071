@@ -123,4 +123,7 @@ Menampilkan:
 
 ## Kesimpulan
 
+<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 224950" src="https://github.com/user-attachments/assets/6c686e79-8f2b-445f-8f12-ca6b7b8e1cc2" />
+<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 225435" src="https://github.com/user-attachments/assets/613c3f81-5aa9-439b-a58c-4e05d84007f0" />
+
 Aplikasi ini berhasil mengimplementasikan Shared Preferences untuk menyimpan status login dan data pengguna secara lokal. Dengan adanya Shared Preferences, pengguna dapat tetap masuk ke aplikasi tanpa perlu login kembali setiap kali aplikasi dibuka.
