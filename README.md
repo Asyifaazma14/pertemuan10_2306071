@@ -1,37 +1,37 @@
-# Pertemuan 10 - Flutter Shared Preferences Login
+# Pertemuan 10 – Implementasi Login dan Manajemen Produk Menggunakan Shared Preferences pada Flutter
 
-## Deskripsi
+## Gambaran Umum
 
-Aplikasi Flutter sederhana yang menerapkan sistem login menggunakan Shared Preferences. Data login disimpan secara lokal sehingga pengguna tidak perlu login kembali ketika aplikasi dibuka ulang. Aplikasi juga menyediakan fitur logout untuk menghapus data sesi pengguna.
+Proyek ini merupakan aplikasi Flutter yang memanfaatkan **Shared Preferences** sebagai media penyimpanan data lokal secara persisten. Selain digunakan untuk menyimpan status login pengguna, aplikasi ini juga menyediakan fitur **Manajemen Produk (CRUD)** yang memungkinkan pengguna menambah, melihat, mengubah, dan menghapus data produk yang tersimpan langsung pada perangkat.
 
-## Fitur
+---
 
-* Form Login
+## Fitur Utama Aplikasi
 
-  * Input Username
-  * Input Password
-  * Validasi Username tidak boleh kosong
-  * Validasi Username minimal 5 karakter
-  * Validasi Password tidak boleh kosong
-  * Validasi Password minimal 8 karakter
+### 1. Sistem Login dan Logout
 
-* Penyimpanan Data Login
+* Form login dengan input username dan password.
+* Validasi username tidak boleh kosong dan minimal 5 karakter.
+* Validasi password tidak boleh kosong dan minimal 8 karakter.
+* Menyimpan status login menggunakan Shared Preferences.
+* Menyimpan username pengguna yang berhasil login.
+* Logout untuk menghapus data sesi dan kembali ke halaman login.
 
-  * Menggunakan Shared Preferences
-  * Menyimpan status login (`isLogin`)
-  * Menyimpan username pengguna
+### 2. Manajemen Produk (CRUD)
 
-* Home Page
+* **Create**: Menambahkan produk baru.
+* **Read**: Menampilkan daftar produk yang tersimpan.
+* **Update**: Mengubah data produk yang sudah ada.
+* **Delete**: Menghapus produk dari daftar.
 
-  * Menampilkan username yang tersimpan
-  * Menampilkan ucapan selamat datang
-  * Menampilkan foto profil
-  * Tombol Logout
+### 3. Validasi Data Produk
 
-* Logout
+* Nama produk wajib diisi.
+* Deskripsi produk wajib diisi.
+* Harga produk wajib berupa angka.
+* Tersedia tombol **Batal** untuk membatalkan proses input.
 
-  * Menghapus seluruh data Shared Preferences
-  * Mengembalikan pengguna ke halaman Login
+---
 
 ## Package yang Digunakan
 
@@ -42,58 +42,92 @@ dependencies:
   shared_preferences: ^2.2.3
 ```
 
-## Struktur Project
+---
+
+## Struktur Folder Proyek
 
 ```text
 lib/
 │
 ├── main.dart
+├── models/
+│   └── product_model.dart
 │
 └── pages/
     ├── login_page.dart
     └── home_page.dart
 ```
 
-## Cara Kerja Aplikasi
+---
 
-### 1. Login
+## Alur Kerja Aplikasi
 
-Pengguna memasukkan username dan password. Sistem akan melakukan validasi sebelum login berhasil.
+### 1. Proses Login
 
-### 2. Penyimpanan Data
+Pengguna memasukkan username dan password pada halaman login. Jika data yang dimasukkan memenuhi aturan validasi, maka sistem akan menyimpan status login dan username ke dalam Shared Preferences.
 
-Jika validasi berhasil:
+### 2. Penyimpanan Data Sesi
 
-* Status login disimpan dengan key `isLogin`
-* Username disimpan dengan key `username`
+Data yang disimpan meliputi:
 
-### 3. Cek Login
+* `isLogin`
+* `username`
 
-Saat aplikasi dijalankan, sistem akan memeriksa nilai `isLogin`.
+Saat aplikasi dibuka kembali, sistem akan memeriksa status login yang tersimpan.
 
-* Jika bernilai `true`, pengguna langsung masuk ke Home Page.
-* Jika bernilai `false`, pengguna diarahkan ke Login Page.
+### 3. Pengelolaan Produk
+
+Data produk disimpan menggunakan Shared Preferences dalam bentuk `List<String>`. Setiap objek produk akan dikonversi ke format JSON sebelum disimpan dan dikembalikan menjadi objek saat dibaca kembali.
 
 ### 4. Logout
 
-Saat tombol logout ditekan:
+Ketika tombol logout ditekan, seluruh data yang tersimpan akan dihapus dan pengguna akan diarahkan kembali ke halaman login.
 
-* Semua data Shared Preferences dihapus.
-* Pengguna dikembalikan ke halaman Login.
+---
 
 ## Implementasi Shared Preferences
 
-### Menyimpan Data
+### Menyimpan Data Login
 
 ```dart
 await prefs.setBool('isLogin', true);
 await prefs.setString('username', usernameController.text);
 ```
 
-### Mengambil Data
+### Mengambil Data Username
 
 ```dart
 username = prefs.getString('username') ?? '';
+```
+
+### Menyimpan Data Produk
+
+```dart
+Future<void> saveProducts() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  List<String> productList =
+      products.map((item) => item.toJson()).toList();
+
+  await prefs.setStringList('products', productList);
+}
+```
+
+### Memuat Data Produk
+
+```dart
+Future<void> loadProducts() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  final productList =
+      prefs.getStringList('products') ?? [];
+
+  setState(() {
+    products = productList
+        .map((item) => ProductModel.fromJson(item))
+        .toList();
+  });
+}
 ```
 
 ### Menghapus Data
@@ -102,28 +136,58 @@ username = prefs.getString('username') ?? '';
 await prefs.clear();
 ```
 
-## Hasil Aplikasi
+---
+
+## Tampilan Aplikasi
 
 ### Halaman Login
 
-Menampilkan:
+Halaman login menyediakan:
 
-* Input Username
-* Input Password
-* Tombol Login
+* Input username
+* Input password
+* Tombol login
+* Validasi form
 
 ### Halaman Home
 
-Menampilkan:
+Halaman utama menampilkan:
 
-* Foto profil
-* Username pengguna
-* Badge verified
-* Tombol Logout
+* Foto profil pengguna
+* Nama pengguna
+* Badge verifikasi
+* Tombol logout
+* Daftar produk
+* Tombol tambah produk
+* Tombol edit produk
+* Tombol hapus produk
+
+---
+
+### Halaman Login dan Home
+
+
+
+<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 224950" src="https://github.com/user-attachments/assets/6c686e79-8f2b-445f-8f12-ca6b7b8e1cc2" />
+
+
+
+### Hasil Pengujian
+
+
+
+<img width="926" height="430" alt="Screenshot 2026-06-10 145638" src="https://github.com/user-attachments/assets/2ff55b40-e40a-40fb-b7aa-460249fc4ae3" />
+
+<img width="929" height="1002" alt="Screenshot 2026-06-10 161850" src="https://github.com/user-attachments/assets/e3620ca9-3d80-4eb4-890c-8aac807eecfa" />
+
+<img width="932" height="999" alt="Screenshot 2026-06-10 161921" src="https://github.com/user-attachments/assets/d44f82ea-9649-45f4-bdc2-d746d3a993a2" />
+
+<img width="930" height="1007" alt="Screenshot 2026-06-10 161911" src="https://github.com/user-attachments/assets/0acc9212-8678-462b-9dfa-879fea3a295b" />
+
+<img width="924" height="997" alt="Screenshot 2026-06-10 161901" src="https://github.com/user-attachments/assets/feb2bd85-2e30-41a9-b05c-05f69fa080d8" />
+
+---
 
 ## Kesimpulan
 
-<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 224950" src="https://github.com/user-attachments/assets/6c686e79-8f2b-445f-8f12-ca6b7b8e1cc2" />
-<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 225435" src="https://github.com/user-attachments/assets/613c3f81-5aa9-439b-a58c-4e05d84007f0" />
-
-Aplikasi ini berhasil mengimplementasikan Shared Preferences untuk menyimpan status login dan data pengguna secara lokal. Dengan adanya Shared Preferences, pengguna dapat tetap masuk ke aplikasi tanpa perlu login kembali setiap kali aplikasi dibuka.
+Aplikasi ini berhasil mengimplementasikan Shared Preferences untuk menyimpan data login dan data produk secara lokal. Selain menjaga sesi login pengguna tetap aktif, aplikasi juga mampu melakukan pengelolaan data produk menggunakan operasi CRUD yang tersimpan secara persisten pada perangkat. Dengan kombinasi validasi form dan penyimpanan lokal, aplikasi dapat memberikan pengalaman penggunaan yang lebih praktis, ringan, dan mudah digunakan.
