@@ -147,9 +147,5 @@ Pada halaman utama ditampilkan:
 Aplikasi ini menunjukkan bagaimana Shared Preferences dapat digunakan untuk menyimpan data sederhana secara lokal pada perangkat. Dengan penerapan fitur ini, status login pengguna dapat dipertahankan meskipun aplikasi ditutup, sehingga pengalaman pengguna menjadi lebih praktis dan efisien. Selain itu, fitur logout memungkinkan pengguna menghapus data sesi dan kembali ke halaman login dengan mudah.
 
 
-## Output
-<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 224950" src="https://github.com/user-attachments/assets/6c686e79-8f2b-445f-8f12-ca6b7b8e1cc2" />
-<img width="926" height="430" alt="Screenshot 2026-06-10 145638" src="https://github.com/user-attachments/assets/2ff55b40-e40a-40fb-b7aa-460249fc4ae3" />
-
 
 Aplikasi ini berhasil mengimplementasikan Shared Preferences untuk menyimpan status login dan data pengguna secara lokal. Dengan adanya Shared Preferences, pengguna dapat tetap masuk ke aplikasi tanpa perlu login kembali setiap kali aplikasi dibuka.
