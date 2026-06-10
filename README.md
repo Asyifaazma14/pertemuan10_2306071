@@ -185,6 +185,8 @@ Halaman utama menampilkan:
 <img width="930" height="1007" alt="Screenshot 2026-06-10 161911" src="https://github.com/user-attachments/assets/0acc9212-8678-462b-9dfa-879fea3a295b" />
 
 <img width="924" height="997" alt="Screenshot 2026-06-10 161901" src="https://github.com/user-attachments/assets/feb2bd85-2e30-41a9-b05c-05f69fa080d8" />
+<img width="911" height="994" alt="Screenshot 2026-06-10 165539" src="https://github.com/user-attachments/assets/4d48c3e8-fd31-4879-8840-817d2c1167f0" />
+
 
 ---
 
