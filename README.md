@@ -164,15 +164,27 @@ Halaman utama menampilkan:
 
 ---
 
-## Hasil Aplikasi
-
 ### Halaman Login dan Home
 
-*(Tambahkan screenshot halaman login dan home di sini)*
 
-### Hasil Pengujian CRUD Produk
 
-*(Tambahkan screenshot proses tambah, edit, dan hapus produk di sini)*
+<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 224950" src="https://github.com/user-attachments/assets/6c686e79-8f2b-445f-8f12-ca6b7b8e1cc2" />
+
+
+
+### Hasil Pengujian
+
+
+
+<img width="926" height="430" alt="Screenshot 2026-06-10 145638" src="https://github.com/user-attachments/assets/2ff55b40-e40a-40fb-b7aa-460249fc4ae3" />
+
+<img width="929" height="1002" alt="Screenshot 2026-06-10 161850" src="https://github.com/user-attachments/assets/e3620ca9-3d80-4eb4-890c-8aac807eecfa" />
+
+<img width="932" height="999" alt="Screenshot 2026-06-10 161921" src="https://github.com/user-attachments/assets/d44f82ea-9649-45f4-bdc2-d746d3a993a2" />
+
+<img width="930" height="1007" alt="Screenshot 2026-06-10 161911" src="https://github.com/user-attachments/assets/0acc9212-8678-462b-9dfa-879fea3a295b" />
+
+<img width="924" height="997" alt="Screenshot 2026-06-10 161901" src="https://github.com/user-attachments/assets/feb2bd85-2e30-41a9-b05c-05f69fa080d8" />
 
 ---
 
