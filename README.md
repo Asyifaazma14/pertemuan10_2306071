@@ -1,37 +1,41 @@
-# Pertemuan 10 - Flutter Shared Preferences Login
+# Pertemuan 10 – Implementasi Login Menggunakan Shared Preferences pada Flutter
 
-## Deskripsi
+## Gambaran Umum
 
-Aplikasi Flutter sederhana yang menerapkan sistem login menggunakan Shared Preferences. Data login disimpan secara lokal sehingga pengguna tidak perlu login kembali ketika aplikasi dibuka ulang. Aplikasi juga menyediakan fitur logout untuk menghapus data sesi pengguna.
+Proyek ini merupakan aplikasi Flutter sederhana yang memanfaatkan **Shared Preferences** untuk menyimpan informasi login pengguna secara lokal. Dengan metode ini, pengguna tidak perlu melakukan login berulang kali setiap kali aplikasi dibuka. Selain itu, aplikasi juga dilengkapi fitur logout untuk mengakhiri sesi dan menghapus data yang tersimpan.
 
-## Fitur
+---
 
-* Form Login
+## Fitur Aplikasi
 
-  * Input Username
-  * Input Password
-  * Validasi Username tidak boleh kosong
-  * Validasi Username minimal 5 karakter
-  * Validasi Password tidak boleh kosong
-  * Validasi Password minimal 8 karakter
+### Form Login
 
-* Penyimpanan Data Login
+* Input username
+* Input password
+* Validasi username tidak boleh kosong
+* Validasi username minimal 5 karakter
+* Validasi password tidak boleh kosong
+* Validasi password minimal 8 karakter
 
-  * Menggunakan Shared Preferences
-  * Menyimpan status login (`isLogin`)
-  * Menyimpan username pengguna
+### Penyimpanan Sesi Pengguna
 
-* Home Page
+* Menggunakan package Shared Preferences
+* Menyimpan status login pengguna
+* Menyimpan username yang digunakan saat login
 
-  * Menampilkan username yang tersimpan
-  * Menampilkan ucapan selamat datang
-  * Menampilkan foto profil
-  * Tombol Logout
+### Halaman Utama (Home)
 
-* Logout
+* Menampilkan username yang tersimpan
+* Menampilkan pesan selamat datang
+* Menampilkan foto profil pengguna
+* Menyediakan tombol logout
 
-  * Menghapus seluruh data Shared Preferences
-  * Mengembalikan pengguna ke halaman Login
+### Logout
+
+* Menghapus data yang tersimpan pada Shared Preferences
+* Mengarahkan pengguna kembali ke halaman login
+
+---
 
 ## Package yang Digunakan
 
@@ -42,7 +46,7 @@ dependencies:
   shared_preferences: ^2.2.3
 ```
 
-## Struktur Project
+## Struktur Folder
 
 ```text
 lib/
@@ -54,34 +58,35 @@ lib/
     └── home_page.dart
 ```
 
-## Cara Kerja Aplikasi
+---
 
-### 1. Login
+## Alur Kerja Aplikasi
 
-Pengguna memasukkan username dan password. Sistem akan melakukan validasi sebelum login berhasil.
+### 1. Proses Login
 
-### 2. Penyimpanan Data
+Pengguna memasukkan username dan password pada form yang tersedia. Sebelum login berhasil, sistem akan melakukan pengecekan terhadap data yang dimasukkan sesuai aturan validasi yang telah ditentukan.
 
-Jika validasi berhasil:
+### 2. Menyimpan Data Login
 
-* Status login disimpan dengan key `isLogin`
-* Username disimpan dengan key `username`
+Apabila data yang dimasukkan valid, aplikasi akan menyimpan informasi login ke dalam Shared Preferences, yaitu:
 
-### 3. Cek Login
+* Status login (`isLogin`)
+* Username pengguna (`username`)
 
-Saat aplikasi dijalankan, sistem akan memeriksa nilai `isLogin`.
+### 3. Pemeriksaan Status Login
 
-* Jika bernilai `true`, pengguna langsung masuk ke Home Page.
-* Jika bernilai `false`, pengguna diarahkan ke Login Page.
+Ketika aplikasi dijalankan, sistem akan memeriksa data login yang tersimpan.
+
+* Jika nilai `isLogin` bernilai `true`, pengguna langsung diarahkan ke halaman Home.
+* Jika nilai `isLogin` bernilai `false`, pengguna akan diarahkan ke halaman Login.
 
 ### 4. Logout
 
-Saat tombol logout ditekan:
+Saat tombol logout ditekan, aplikasi akan menghapus seluruh data yang tersimpan pada Shared Preferences dan mengakhiri sesi pengguna. Setelah itu, pengguna akan kembali ke halaman login.
 
-* Semua data Shared Preferences dihapus.
-* Pengguna dikembalikan ke halaman Login.
+---
 
-## Implementasi Shared Preferences
+## Penggunaan Shared Preferences
 
 ### Menyimpan Data
 
@@ -102,28 +107,49 @@ username = prefs.getString('username') ?? '';
 await prefs.clear();
 ```
 
-## Hasil Aplikasi
+---
+
+## Tampilan Aplikasi
 
 ### Halaman Login
 
-Menampilkan:
+Pada halaman ini tersedia:
 
-* Input Username
-* Input Password
-* Tombol Login
+* Form username
+* Form password
+* Tombol login
 
 ### Halaman Home
 
-Menampilkan:
+Pada halaman utama ditampilkan:
 
-* Foto profil
+* Foto profil pengguna
 * Username pengguna
-* Badge verified
-* Tombol Logout
+* Badge verifikasi
+* Tombol logout
+
+---
+
+## Hasil Aplikasi
+
+### Halaman Login dan Home
+
+<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 224950" src="https://github.com/user-attachments/assets/6c686e79-8f2b-445f-8f12-ca6b7b8e1cc2" />
+
+### Hasil Pengujian
+
+<img width="926" height="430" alt="Screenshot 2026-06-10 145638" src="https://github.com/user-attachments/assets/2ff55b40-e40a-40fb-b7aa-460249fc4ae3" />
+
+---
 
 ## Kesimpulan
 
+Aplikasi ini menunjukkan bagaimana Shared Preferences dapat digunakan untuk menyimpan data sederhana secara lokal pada perangkat. Dengan penerapan fitur ini, status login pengguna dapat dipertahankan meskipun aplikasi ditutup, sehingga pengalaman pengguna menjadi lebih praktis dan efisien. Selain itu, fitur logout memungkinkan pengguna menghapus data sesi dan kembali ke halaman login dengan mudah.
+
+
+## Output
 <img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 224950" src="https://github.com/user-attachments/assets/6c686e79-8f2b-445f-8f12-ca6b7b8e1cc2" />
-<img width="1919" height="1199" alt="Cuplikan layar 2026-06-03 225435" src="https://github.com/user-attachments/assets/613c3f81-5aa9-439b-a58c-4e05d84007f0" />
+<img width="926" height="430" alt="Screenshot 2026-06-10 145638" src="https://github.com/user-attachments/assets/2ff55b40-e40a-40fb-b7aa-460249fc4ae3" />
+
 
 Aplikasi ini berhasil mengimplementasikan Shared Preferences untuk menyimpan status login dan data pengguna secara lokal. Dengan adanya Shared Preferences, pengguna dapat tetap masuk ke aplikasi tanpa perlu login kembali setiap kali aplikasi dibuka.
