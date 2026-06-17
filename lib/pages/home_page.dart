@@ -33,9 +33,12 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> loadProducts() async {
     final prefs = await SharedPreferences.getInstance();
-    final productList = prefs.getStringList('products') ?? [];
+    List<String> productList = prefs.getStringList('products') ?? [];
+    totalProducts = productList.length; // Update totalProducts dengan jumlah produk yang dimuat
     setState(() {
       products = productList
+          .reversed
+          .take(3)
           .map((item) => ProductModel.fromJson(item))
           .toList();
     });
