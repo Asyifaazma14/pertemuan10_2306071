@@ -55,12 +55,7 @@ class ProductCard extends StatelessWidget {
               Text(product.description),
             ],
           ),
-          leading: onEdit != null
-              ? IconButton(
-                  icon: const Icon(Icons.edit, color: Colors.orange),
-                  onPressed: onEdit,
-                )
-              : null,
+
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
